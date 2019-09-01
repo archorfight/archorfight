@@ -65,7 +65,7 @@
     <article id="post-目标的确定" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/01/目标的确定/" class="article-date">
-  <time datetime="2019-09-01T09:11:30.000Z" itemprop="datePublished">2019-09-01</time>
+  <time datetime="2019-09-01T09:11:00.000Z" itemprop="datePublished">2019-09-01</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/目标的确定/">目标的确定</a>
+      <a class="article-title" href="/2019/09/01/目标的确定/">Mybatis</a>
     </h1>
   
 
@@ -84,15 +84,174 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="凡体jibati"><a href="#凡体jibati" class="headerlink" title="凡体jibati"></a>凡体jibati</h3><ol>
-<li>我的一个梦想</li>
-<li>也许你是个傻逼</li>
-</ol>
+        <h1 id="Mybatis使用篇"><a href="#Mybatis使用篇" class="headerlink" title="Mybatis使用篇"></a>Mybatis使用篇</h1><h3 id="一-概念"><a href="#一-概念" class="headerlink" title="一  概念"></a>一  概念</h3><blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/</a>   官方文档</p>
+</blockquote>
+<ul>
+<li><strong>what:</strong>MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings. </li>
+<li><strong>why</strong>:MyBatis eliminates almost all of the JDBC code and manual setting of parameters and retrieval of results. </li>
+<li><strong>how</strong>:MyBatis can use simple XML or Annotations for configuration and map primitives, Map interfaces and Java POJOs (Plain Old Java Objects) to database records. </li>
+</ul>
+<h3 id="二-使用"><a href="#二-使用" class="headerlink" title="二 使用"></a>二 使用</h3><ul>
+<li><p>使用方式</p>
+<ul>
+<li>编程式</li>
+<li>集成式 managed集成到spring</li>
+<li>工作当中的使用方式  1：generator生成xml和dao； 2：mybatis-plus 生成代码</li>
+</ul>
+</li>
+<li><p>作用域scope生命周期</p>
+<table>
+<thead>
+<tr>
+<th>class</th>
+<th>scope</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SqlSessionFactoryBuilder</td>
+<td>method</td>
+</tr>
+<tr>
+<td>SqlSessionFactory</td>
+<td>application</td>
+</tr>
+<tr>
+<td>SqlSession</td>
+<td>request/method(可认为是线程级别)</td>
+</tr>
+<tr>
+<td>Mapper</td>
+<td>method</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Mapper的xml和annotation形式</p>
+<ul>
+<li><p>兼容形式-&gt;互补</p>
+</li>
+<li><p>优缺点</p>
+<ul>
+<li>xml 跟接口分离，统一管理，复杂sql可读性好   缺点xml文件多</li>
+<li>注解  接口就能看到sql语句，简单语句可读性好  缺点：复杂的sql不好维护，可读性差</li>
+</ul>
+</li>
+<li><p>config部分文件解读   </p>
+<blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/configuration.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/configuration.html</a> </p>
+</blockquote>
+<ul>
+<li>Environment</li>
+<li>TypeHandler(java和表字段类型的转换实现)<ul>
+<li>定义 <code>com.gupao.dal.config.MybatisConfig#localSessionFactoryBean</code></li>
+<li>注册 <code>com.gupao.dal.config.MybatisConfig#localSessionFa ctoryBean</code></li>
+<li>注册到 <code>xml</code> <code>resultMap</code> 里面的<code>result</code>标签 里面的<code>typeHandler</code>属性里面</li>
+</ul>
+</li>
+<li>Plugins<ul>
+<li>拦截范围<ul>
+<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
+<li>ParameterHandler (getParameterObject, setParameters)</li>
+<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
+<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
+</ul>
+</li>
+<li>定义<code>com.gupao.dal.plugins.TestPlugin</code></li>
+<li>注册<code>com.gupao.dal.config.MybatisConfig#localSessionFa ctoryBean</code> </li>
+<li>使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-配置文件解读"><a href="#三-配置文件解读" class="headerlink" title="三 配置文件解读"></a>三 配置文件解读</h3><ul>
+<li><p>mapper文件解读</p>
+<ul>
+<li><p>namespace  关联到接口方法，区分类似package的作用</p>
+</li>
+<li><p>resultap/resultType</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reaultType</td>
+<td>多表关联字段是清楚知道的，性能调优直观</td>
+<td>创建很多实体类</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>不需要写join语句</td>
+<td>N+1问题</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>sql</p>
+</li>
+<li><p>select insert update delete CRUD</p>
+</li>
+<li><p>动态SQL</p>
+<blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/dynamic-sql.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/dynamic-sql.html</a></p>
+</blockquote>
+</li>
+<li><p>缓存</p>
+<ul>
+<li>一级缓存</li>
+<li>二级缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1.分页</p>
+<ul>
+<li><p>逻辑分页 <code>org.apache.ibatis.executor.resultset.DefaultResultSetHandler #handleRowValuesForSimpleResultMap</code> 内存里分页</p>
+</li>
+<li><p>物理分页</p>
+<ul>
+<li>select … limit 0,10;</li>
+<li>分页插件   ：<code>PageHelper</code></li>
+</ul>
+</li>
+<li><p>批量操作Batch</p>
+<ul>
+<li><p>for 循环  一个一个的插入， 每一次插入都有数据库IO 性能不好</p>
+</li>
+<li><p>foreach 拼sql 性能最好  只有几个IO  缺陷  有SQL长度限制，需要定好List大小 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;%net_buffer%&apos;;</span><br><span class="line">show variables like &apos;%packet%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ExecutorType.BATCH   <code>com.gupao.test.dal.TestMapperTest#insertBatchExType</code></p>
+</li>
+</ul>
+</li>
+<li><p>联合查询</p>
+<ul>
+<li><p>嵌套结果</p>
+</li>
+<li><p>嵌套查询</p>
+<ul>
+<li>Lazy loading</li>
+<li><code>com.gupao.dal.config.MybatisConfig#localSessio nFactoryBean</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory =sqlSeesionFactoryBean.getObject();</span><br><span class="line">  factory.getConfiguration().setLazyLoadingEnabled(true);</span><br><span class="line">  ...                       .setAggressiveLazyLoading(false);</span><br><span class="line">  ...                       .setProxyFactory(new CglibProxyFactory());</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/01/目标的确定/" data-id="ck00r9kya00008gu1319tlr7m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/01/目标的确定/" data-id="ck00s7cyq0001vwu19dvqi1bf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/01/hello-world/" data-id="ck00r1tlz000058u1cwunhm74" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/01/hello-world/" data-id="ck00s7cyk0000vwu1jtqspq80" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +341,7 @@
       <ul>
         
           <li>
-            <a href="/2019/09/01/目标的确定/">目标的确定</a>
+            <a href="/2019/09/01/目标的确定/">Mybatis</a>
           </li>
         
           <li>
