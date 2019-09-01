@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <title>Hello World | Hexo</title>
-  <meta name="keywords" content>
-  <meta name="description" content="Hello World | Hexo">
+  <title>Mybatis | Hexo</title>
+  <meta name="keywords" content=" orm , 实战 ">
+  <meta name="description" content="Mybatis | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Mybatis使用篇一  概念 http://www.mybatis.org/mybatis-3/   官方文档   what:MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings.  why:MyBatis elimin">
 <meta name="keywords" content="orm,实战">
@@ -304,19 +304,33 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-orm" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">Mybatis</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            
+                <a href="javascript:" data-rel="orm">orm</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color4">orm</a>
+            
+            <a href="javascript:" class="color3">实战</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-09-01 17:01:52'>2019-09-01 17:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-09-01 17:56:46'>2019-09-01 17:11</time>
         
     </div>
     <div class="article-meta">
@@ -338,7 +352,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mybatis使用篇"><span class="toc-text">Mybatis使用篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-概念"><span class="toc-text">一  概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-使用"><span class="toc-text">二 使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-配置文件解读"><span class="toc-text">三 配置文件解读</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -353,19 +367,169 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Mybatis使用篇"><a href="#Mybatis使用篇" class="headerlink" title="Mybatis使用篇"></a>Mybatis使用篇</h1><h3 id="一-概念"><a href="#一-概念" class="headerlink" title="一  概念"></a>一  概念</h3><blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/</a>   官方文档</p>
+</blockquote>
+<ul>
+<li><strong>what:</strong>MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings. </li>
+<li><strong>why</strong>:MyBatis eliminates almost all of the JDBC code and manual setting of parameters and retrieval of results. </li>
+<li><strong>how</strong>:MyBatis can use simple XML or Annotations for configuration and map primitives, Map interfaces and Java POJOs (Plain Old Java Objects) to database records. </li>
+</ul>
+<h3 id="二-使用"><a href="#二-使用" class="headerlink" title="二 使用"></a>二 使用</h3><ul>
+<li><p>使用方式</p>
+<ul>
+<li>编程式</li>
+<li>集成式 managed集成到spring</li>
+<li>工作当中的使用方式  1：generator生成xml和dao； 2：mybatis-plus 生成代码</li>
+</ul>
+</li>
+<li><p>作用域scope生命周期</p>
+<table>
+<thead>
+<tr>
+<th>class</th>
+<th>scope</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SqlSessionFactoryBuilder</td>
+<td>method</td>
+</tr>
+<tr>
+<td>SqlSessionFactory</td>
+<td>application</td>
+</tr>
+<tr>
+<td>SqlSession</td>
+<td>request/method(可认为是线程级别)</td>
+</tr>
+<tr>
+<td>Mapper</td>
+<td>method</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Mapper的xml和annotation形式</p>
+<ul>
+<li><p>兼容形式-&gt;互补</p>
+</li>
+<li><p>优缺点</p>
+<ul>
+<li>xml 跟接口分离，统一管理，复杂sql可读性好   缺点xml文件多</li>
+<li>注解  接口就能看到sql语句，简单语句可读性好  缺点：复杂的sql不好维护，可读性差</li>
+</ul>
+</li>
+<li><p>config部分文件解读   </p>
+<blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/configuration.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/configuration.html</a> </p>
+</blockquote>
+<ul>
+<li>Environment</li>
+<li>TypeHandler(java和表字段类型的转换实现)<ul>
+<li>定义 <code>com.gupao.dal.config.MybatisConfig#localSessionFactoryBean</code></li>
+<li>注册 <code>com.gupao.dal.config.MybatisConfig#localSessionFa ctoryBean</code></li>
+<li>注册到 <code>xml</code> <code>resultMap</code> 里面的<code>result</code>标签 里面的<code>typeHandler</code>属性里面</li>
+</ul>
+</li>
+<li>Plugins<ul>
+<li>拦截范围<ul>
+<li>Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)</li>
+<li>ParameterHandler (getParameterObject, setParameters)</li>
+<li>ResultSetHandler (handleResultSets, handleOutputParameters)</li>
+<li>StatementHandler (prepare, parameterize, batch, update, query)</li>
+</ul>
+</li>
+<li>定义<code>com.gupao.dal.plugins.TestPlugin</code></li>
+<li>注册<code>com.gupao.dal.config.MybatisConfig#localSessionFa ctoryBean</code> </li>
+<li>使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-配置文件解读"><a href="#三-配置文件解读" class="headerlink" title="三 配置文件解读"></a>三 配置文件解读</h3><ul>
+<li><p>mapper文件解读</p>
+<ul>
+<li><p>namespace  关联到接口方法，区分类似package的作用</p>
+</li>
+<li><p>resultap/resultType</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reaultType</td>
+<td>多表关联字段是清楚知道的，性能调优直观</td>
+<td>创建很多实体类</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>不需要写join语句</td>
+<td>N+1问题</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>sql</p>
+</li>
+<li><p>select insert update delete CRUD</p>
+</li>
+<li><p>动态SQL</p>
+<blockquote>
+<p><a href="http://www.mybatis.org/mybatis-3/dynamic-sql.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/dynamic-sql.html</a></p>
+</blockquote>
+</li>
+<li><p>缓存</p>
+<ul>
+<li>一级缓存</li>
+<li>二级缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1.分页</p>
+<ul>
+<li><p>逻辑分页 <code>org.apache.ibatis.executor.resultset.DefaultResultSetHandler #handleRowValuesForSimpleResultMap</code> 内存里分页</p>
+</li>
+<li><p>物理分页</p>
+<ul>
+<li>select … limit 0,10;</li>
+<li>分页插件   ：<code>PageHelper</code></li>
+</ul>
+</li>
+<li><p>批量操作Batch</p>
+<ul>
+<li><p>for 循环  一个一个的插入， 每一次插入都有数据库IO 性能不好</p>
+</li>
+<li><p>foreach 拼sql 性能最好  只有几个IO  缺陷  有SQL长度限制，需要定好List大小 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;%net_buffer%&apos;;</span><br><span class="line">show variables like &apos;%packet%&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ExecutorType.BATCH   <code>com.gupao.test.dal.TestMapperTest#insertBatchExType</code></p>
+</li>
+</ul>
+</li>
+<li><p>联合查询</p>
+<ul>
+<li><p>嵌套结果</p>
+</li>
+<li><p>嵌套查询</p>
+<ul>
+<li>Lazy loading</li>
+<li><code>com.gupao.dal.config.MybatisConfig#localSessio nFactoryBean</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory =sqlSeesionFactoryBean.getObject();</span><br><span class="line">  factory.getConfiguration().setLazyLoadingEnabled(true);</span><br><span class="line">  ...                       .setAggressiveLazyLoading(false);</span><br><span class="line">  ...                       .setProxyFactory(new CglibProxyFactory());</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -379,12 +543,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Hello World</p>
+    <p><span class="copy-title">文章标题:</span>Mybatis</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="John Doe">John Doe</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-09-01, 17:01:52</p>
-    <p><span class="copy-title">最后更新:</span>2019-09-01, 17:01:52</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/hello-world/" title="Hello World">http://yoursite.com/2019/09/01/hello-world/</a>
+    <p><span class="copy-title">发布时间:</span>2019-09-01, 17:11:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-09-01, 17:56:46</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/09/01/orm/" title="Mybatis">http://yoursite.com/2019/09/01/orm/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
